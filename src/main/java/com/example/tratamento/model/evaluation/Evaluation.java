@@ -1,10 +1,10 @@
-package com.example.tratamento.model.avaliation;
+package com.example.tratamento.model.evaluation;
 
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
-public class Avaliation {
+public class Evaluation {
     @Id
     private String id;
     private String patientId;

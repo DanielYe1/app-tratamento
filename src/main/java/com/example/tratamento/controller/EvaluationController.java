@@ -1,7 +1,7 @@
 package com.example.tratamento.controller;
 
-import com.example.tratamento.model.avaliation.Avaliation;
-import com.example.tratamento.service.AvaliationService;
+import com.example.tratamento.model.evaluation.Evaluation;
+import com.example.tratamento.service.EvaluationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/avaliation")
-public class AvaliationController {
+@RequestMapping("/evaluation")
+public class EvaluationController {
 
     @Autowired
-    AvaliationService service;
+    EvaluationService service;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity listAll(){
@@ -22,24 +22,24 @@ public class AvaliationController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity saveAvaliation(@RequestBody Avaliation avaliation) {
-        Avaliation added = service.add(avaliation);
+    public ResponseEntity saveEvaluation(@RequestBody Evaluation evaluation) {
+        Evaluation added = service.add(evaluation);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity searchAvaliation(@PathVariable("id") String avaliationId) {
-        Optional<Avaliation> avaliation = service.findById(avaliationId);
-        if (avaliation.isPresent()) {
-            return new ResponseEntity<Avaliation>(avaliation.get(), HttpStatus.OK);
+    public ResponseEntity searchEvaluation(@PathVariable("id") String evaluationId) {
+        Optional<Evaluation> evaluation = service.findById(evaluationId);
+        if (evaluation.isPresent()) {
+            return new ResponseEntity<Evaluation>(evaluation.get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<Avaliation>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Evaluation>(HttpStatus.NOT_FOUND);
         }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateAvaliation(@PathVariable("id") String id, @RequestBody Avaliation avaliation) {
-        if (service.update(id, avaliation)) {
+    public ResponseEntity updateEvaluation(@PathVariable("id") String id, @RequestBody Evaluation evaluation) {
+        if (service.update(id, evaluation)) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -47,8 +47,8 @@ public class AvaliationController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteAvaliation(@PathVariable("id") String avaliationId) {
-        if (service.delete(avaliationId)) {
+    public ResponseEntity deleteEvaluation(@PathVariable("id") String evaluationId) {
+        if (service.delete(evaluationId)) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
