@@ -41,8 +41,12 @@ public class EvaluationService {
         return evaluationRepository.findById(id);
     }
 
-    public List<Evaluation> findAll(){
-        return evaluationRepository.findAll();
+    public List<Evaluation> findAllByDoctorId(String doctorId){
+        return evaluationRepository.findAllByDoctorId(doctorId);
+    }
+
+    public List<Evaluation> findAllByPatientId(String patientId){
+        return evaluationRepository.findAllByDoctorId(patientId);
     }
 
 }

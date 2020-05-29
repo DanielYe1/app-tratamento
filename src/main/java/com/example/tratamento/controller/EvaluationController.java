@@ -16,9 +16,14 @@ public class EvaluationController {
     @Autowired
     EvaluationService service;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity listAll(){
-        return new ResponseEntity(service.findAll(), HttpStatus.OK);
+    @RequestMapping(value = "/doctor/{id}", method = RequestMethod.GET)
+    public ResponseEntity listAllByDoctorId(@PathVariable("id") String doctorId) {
+        return new ResponseEntity(service.findAllByDoctorId(doctorId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/patient/{id}", method = RequestMethod.GET)
+    public ResponseEntity listAllByPatientId(@PathVariable("id") String patientId) {
+        return new ResponseEntity(service.findAllByPatientId(patientId), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
